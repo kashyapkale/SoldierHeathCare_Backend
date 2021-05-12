@@ -7,9 +7,11 @@ from config import *
 from flask import Flask,jsonify,request
 from flask_restful import Api
 from flask_mysqldb import MySQL
+from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app, resources={r"/soldiers": {"origins": "*"}})
 
 app.config['MYSQL_HOST'] = db_host
 app.config['MYSQL_USER'] = db_user
@@ -42,8 +44,10 @@ def getAllSoldiers():
 @app.route('/soldier/<string:id>',methods=['PUT','GET'])
 def getSoldier(id):
     if (request.method == 'PUT'):
+        print("Entering PUT Block")
         args = soldier_put_args.parse_args()
         try:
+            print("Entering Try Block")
             insertSoldierValue(mysql,args)
             return jsonify("Success")
         except:
@@ -51,11 +55,14 @@ def getSoldier(id):
         
     if (request.method == 'GET'):
         try:
+            print("Entering try")
             query = 'SELECT * FROM sinfo WHERE S_id = %s'
             records = getTable(mysql,query,(id))
+            print("Post query print")
+            print(records)
             row = records[0]
             obj = getSoldierJson(row)
-            return jsonify(obj)
+            return jsonify(obj) 
         except:
             return jsonify("Incorrect Soldier ID")
 
@@ -74,6 +81,7 @@ def getAllBiovals():
 def getBioValue(id):
     if (request.method == 'PUT'):
         args = bioval_put_args.parse_args()
+        #args = reqparse.RequestParser().parse_args()
         try:
             insertBiovalValue(mysql,args)
             return jsonify("Success")
@@ -82,7 +90,7 @@ def getBioValue(id):
     
     if (request.method == 'GET'):
         try:
-            query = 'SELECT * FROM binfo WHERE B_id = %s'
+            query = 'SELECT * FROM binfo WHERE S_id = %s'
             records = getTable(mysql,query,(id))
             row = records[0]
             obj = getBiovalJson(row)

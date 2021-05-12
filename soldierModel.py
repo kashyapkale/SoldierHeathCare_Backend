@@ -8,10 +8,10 @@ def getSoldierJson(row):
     return obj
 
 def parseSoldierTable(records):
-    response = {}
+    response = []
     for row in records:
         obj = getSoldierJson(row)
-        response[row[0]] = obj
+        response.append(obj)
     return response
 
 def insertSoldierValue(mysql,args):

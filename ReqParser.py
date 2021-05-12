@@ -8,8 +8,8 @@ def parseBiovals():
     bioval_put_args.add_argument("S_id", type=str, help="s_id is required", required=True)
     bioval_put_args.add_argument("B_id", type=str, help="B_id is required", required=True)
     bioval_put_args.add_argument("heartrate", type=int, help="heartrate is required", required=True)
-    bioval_put_args.add_argument("spo2", type=int, help="spo2 is required", required=True)
     bioval_put_args.add_argument("temprature", type=int, help="temprature is required", required=True)
+    bioval_put_args.add_argument("healthy", type=int, help="Healthy is required", required=True)
     return bioval_put_args
 
 def parseSoldierInfo():

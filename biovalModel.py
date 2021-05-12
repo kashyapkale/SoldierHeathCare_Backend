@@ -4,9 +4,9 @@ def getBiovalJson(row):
     obj["S_id"]=row[1]
     obj["L_id"]=row[2]
     obj["heartrate"]=row[3]
-    obj["spo2"]=row[4]
-    obj["ecg"]=row[5]
-    obj["temprature"]=row[6]
+    obj["ecg"]=row[4]
+    obj["temprature"]=row[5]
+    obj["healthy"]=row[6]
     return obj
 
 def parseBiovalTable(records):
@@ -18,6 +18,6 @@ def parseBiovalTable(records):
 
 def insertBiovalValue(mysql,args):
     cur = mysql.connection.cursor()
-    cur.execute('INSERT INTO binfo VALUES(%s,%s,%s,%s,%s,%s,%s)',(args["B_id"],args["S_id"],args["L_id"],str(args["heartrate"]),str(args["spo2"]),"-1",str(args["temprature"])))
+    cur.execute('INSERT INTO binfo VALUES(%s,%s,%s,%s,%s,%s,%s)',(args["B_id"],args["S_id"],args["L_id"],str(args["heartrate"]),"-1",str(args["temprature"]),str(args["healthy"])))
     mysql.connection.commit()
     cur.close()
