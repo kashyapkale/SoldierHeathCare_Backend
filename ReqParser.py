@@ -30,6 +30,16 @@ def parseLeaderInfo():
     leader_put_args.add_argument("L_id", type=str, help="Likes on the video", required=True)
     return leader_put_args
 
+def parseHelpInfo():
+    help_put_args = reqparse.RequestParser()
+    help_put_args.add_argument("FirstName", type=str, help="Name  is required", required=True)
+    help_put_args.add_argument("LastName", type=str, help="Name  is required", required=True)
+    help_put_args.add_argument("S_id", type=str, help="s_id is required", required=True)
+    help_put_args.add_argument("age", type=int, help="s_id is required", required=True)
+    help_put_args.add_argument("L_id", type=str, help="Likes on the video", required=True)
+    return help_put_args
+
+
 
 #____________________Unwanted Vars___________________
 

@@ -6,12 +6,12 @@ def getLeaderJson(row):
     obj["age"]=row[3]
     obj["S_id"]=row[4]
     return obj
-
+                             
 def parseLeaderTable(records):
-    response = {}
+    response = []
     for row in records:
         obj = getLeaderJson(row)
-        response[row[0]] = obj
+        response.append(obj)
     return response
 
 def insertLeaderValue(mysql,args):
