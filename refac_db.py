@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 api = Api(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-
+#Change datbase creds in config file*************************************************************
 app.config['MYSQL_HOST'] = db_host
 app.config['MYSQL_USER'] = db_user
 app.config['MYSQL_PASSWORD'] = db_password
